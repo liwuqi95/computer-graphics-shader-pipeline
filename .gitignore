@@ -27,6 +27,7 @@
 *.exe
 *.out
 *.app
+.idea/*
 
 *.un~
 *.swo
@@ -35,3 +36,4 @@ build/*
 *.DS_Store
 file_watcher
 solution/*
+Cmake-build-debug/*
