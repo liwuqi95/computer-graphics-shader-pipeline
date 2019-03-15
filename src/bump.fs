@@ -7,17 +7,6 @@ uniform mat4 proj;
 uniform float animation_seconds;
 uniform bool is_moon;
 
-float turb(vec3 position, float size){
-    float random = 0;
-    float scale = 1;
-    while(scale > size){
-        position = position / scale;
-        random = random + improved_perlin_noise(position)*scale;
-        scale = scale/2;
-    }
-    return random;
-}
-
 // Inputs:
 //                     linearly interpolated from tessellation evaluation shader
 //                     output

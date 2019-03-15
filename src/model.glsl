@@ -11,7 +11,7 @@ mat4 model(bool is_moon, float time)
 {
     /////////////////////////////////////////////////////////////////////////////
 
-    return is_moon ? rotate_about_y(0.5 * M_PI * time)* translate(vec3(2, 0, 0)) * uniform_scale(0.3) : identity();
+    return is_moon ? rotate_about_y(-0.5 * M_PI * time)* translate(vec3(2, 0, 0)) * uniform_scale(0.3) : identity();
 
     /////////////////////////////////////////////////////////////////////////////
 }

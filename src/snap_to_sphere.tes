@@ -27,15 +27,11 @@ void main()
 {
   /////////////////////////////////////////////////////////////////////////////
 
-
   mat4 model = model(is_moon, animation_seconds);
-
-
   sphere_fs_in = normalize(interpolate(gl_TessCoord, pos_es_in[0].xyz, pos_es_in[1].xyz, pos_es_in[2].xyz));
   normal_fs_in = normalize(transpose(inverse(view*model))*vec4(sphere_fs_in,0)).xyz;
   view_pos_fs_in = view * model *vec4(sphere_fs_in,1);
-  pos_fs_in =  proj * view_pos_fs_in;
-
+  pos_fs_in = proj * view_pos_fs_in;
   gl_Position = pos_fs_in;
 
   /////////////////////////////////////////////////////////////////////////////
