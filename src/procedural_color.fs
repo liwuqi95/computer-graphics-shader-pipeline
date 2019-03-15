@@ -24,9 +24,7 @@ float turb(vec3 position, float size){
     }
     return random;
 }
-
 //http://physbam.stanford.edu/cs448x/old/Procedural_Noise(2f)Perlin_Noise.html
-//https://www.youtube.com/watch?v=MJ3bvCkHJtE
 
 // expects: blinn_phong, perlin_noise
 void main()
@@ -44,7 +42,7 @@ void main()
   vec3 v = -normalize((view_pos_fs_in/view_pos_fs_in.w).xyz);
   vec3 l = rotation*normalize(vec3(3,2,0));
 
-  float random =  sqrt(sin((sphere_fs_in.x+3.0*turb(15*sphere_fs_in,0.5))*M_PI) + 1) * 0.7071;
+  float random = sqrt(sin((sphere_fs_in.y+3.0*turb(2*sphere_fs_in, 0.5))*M_PI) + 1) * 0.7071;
 
   if (is_moon) kd = kd + vec3(0.2 * sqrt(random), 0.2 * random, 0.2* sqrt(random));
     else kd = kd + vec3(0.2 * sqrt(random), 0.4 * random, 0.2* sqrt(random));
