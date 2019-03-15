@@ -52,19 +52,19 @@ float perlin_noise(vec3 st)
         dots[i] = dot(distance[i], gv[i]);
     }
 
-    float reduce1_1 = mix(dots[0], dots[1], oppo.x);
-    float reduce1_2 = mix(dots[2], dots[3], oppo.x);
-    float reduce1_3 = mix(dots[4], dots[5], oppo.x);
-    float reduce1_4 = mix(dots[6], dots[7], oppo.x);
+    vec3 smoother = smooth_step(oppo);
+
+    float reduce1_1 = mix(dots[0], dots[1], smoother.x);
+    float reduce1_2 = mix(dots[2], dots[3], smoother.x);
+    float reduce1_3 = mix(dots[4], dots[5], smoother.x);
+    float reduce1_4 = mix(dots[6], dots[7], smoother.x);
 
 
-    float reduce2_1 = mix(reduce1_1, reduce1_2, oppo.y);
-    float reduce2_2 = mix(reduce1_3, reduce1_4, oppo.y);
+    float reduce2_1 = mix(reduce1_1, reduce1_2, smoother.y);
+    float reduce2_2 = mix(reduce1_3, reduce1_4, smoother.y);
 
 
-    float reduce = mix(reduce2_1, reduce2_2, oppo.z);
-
-
+    float reduce = mix(reduce2_1, reduce2_2, smoother.z);
 
     return -1 + 2 * reduce;
 
