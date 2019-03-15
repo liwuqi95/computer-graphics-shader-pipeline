@@ -21,7 +21,7 @@ float bump_height(bool is_moon, vec3 s)
         scale = scale/2;
     }
 
-    return (sqrt(sin((s.y+3.0*random)*M_PI) + 1) * 0.7071)/10;
+    return (sqrt(sin((2.0*random)*M_PI) + 1) * 0.7071)/10;
 
     /////////////////////////////////////////////////////////////////////////////
 }

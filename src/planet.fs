@@ -30,7 +30,7 @@ void main()
   vec3 kd = is_moon ? vec3(0.2) : vec3(0.19,0.24,0.75);
   vec3 ks = is_moon ? vec3(0.8) : vec3(0.8);
 
-  vec3 n = normalize(normal_fs_in);
+  vec3 n = normalize(sphere_fs_in);
 
   vec3 T, B;
   tangent(n,T,B);
@@ -52,7 +52,7 @@ void main()
 
   float height = length(position) - length(n);
 
-  if (!is_moon && height > 0.04)
+  if (!is_moon && height > 0.06)
     kd = vec3(0.48, 0.5 + (3 * height), 0.21);
 
   color = blinn_phong(ka, kd, ks, 1000, n, v, l);

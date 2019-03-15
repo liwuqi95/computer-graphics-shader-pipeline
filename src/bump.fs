@@ -41,7 +41,7 @@ void main()
   vec3 kd = is_moon ? vec3(0.2) : vec3(0.19,0.24,0.75);
   vec3 ks = is_moon ? vec3(0.8) : vec3(0.8);
 
-  vec3 n = normalize(normal_fs_in);
+  vec3 n = normalize(sphere_fs_in);
 
   vec3 T, B;
   tangent(n,T,B);
@@ -54,7 +54,7 @@ void main()
   mat4 model = model(is_moon, animation_seconds);
 
   n = normalize(cross(p1 - position, p2 - position));
-  n = normalize((transpose(inverse(view))*transpose(inverse(model))*vec4(n, 1.0)).xyz);
+  n = normalize((transpose(inverse(view * model))*vec4(n, 1.0)).xyz);
 
   vec4 vp = view*model*vec4(position, 1.0);
   vec3 v =  -normalize((vp/vp.w).xyz);
