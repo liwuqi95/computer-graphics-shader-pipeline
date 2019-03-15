@@ -17,7 +17,18 @@ out vec3 color;
 void main()
 {
   /////////////////////////////////////////////////////////////////////////////
-  // Replace with your code 
-  color = vec3(1,1,1);
+
+  float theta = 0.5*M_PI*animation_seconds;
+  mat3 rotation = mat3(cos(theta),0,sin(theta),0,1,0,-sin(theta),0,cos(theta));
+
+  vec3 ka = is_moon ? vec3(0.02) : vec3(0.013,0.013,0.031);
+  vec3 kd = is_moon ? vec3(0.2) : vec3(0.19,0.24,0.75);
+  vec3 ks = is_moon ? vec3(0.8) : vec3(0.8);
+
+  vec3 n = normalize(normal_fs_in);
+  vec3 v = -normalize((view_pos_fs_in/view_pos_fs_in.w).xyz);
+  vec3 l = rotation*normalize(vec3(3,2,0));
+
+  color = blinn_phong(ka, kd, ks, 1000, n, v, l);
   /////////////////////////////////////////////////////////////////////////////
 }

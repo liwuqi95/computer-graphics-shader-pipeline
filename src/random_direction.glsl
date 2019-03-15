@@ -6,10 +6,18 @@
 // the unit sphere (assuming random2 is uniform over [0,1]²).
 //
 // expects: random2.glsl, PI.glsl
-vec3 random_direction( vec3 seed)
+vec3 random_direction(vec3 seed)
 {
-  /////////////////////////////////////////////////////////////////////////////
-  // Replace with your code 
-  return vec3(1,0,0);
-  /////////////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////////////
+    // Replace with your code
+    vec2 v = random2(seed);
+
+
+    float theta = 2 * M_PI * v.x;
+    float phi = M_PI * v.y;
+
+    return normalize(vec3(cos(theta)* sin(phi), sin(theta) * sin(phi), cos(phi)));
+
+
+    /////////////////////////////////////////////////////////////////////////////
 }

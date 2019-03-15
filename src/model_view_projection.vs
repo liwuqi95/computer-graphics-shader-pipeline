@@ -24,7 +24,6 @@ out vec4 pos_cs_in;
 void main()
 {
   /////////////////////////////////////////////////////////////////////////////
-  // Replace with your code
 
   mat4 model = model(is_moon, animation_seconds);
   pos_cs_in = proj * view * model * vec4(pos_vs_in, 1.0);

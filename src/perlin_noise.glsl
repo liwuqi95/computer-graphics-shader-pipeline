@@ -6,11 +6,68 @@
 // Returns a smooth value between (-1,1)
 //
 // expects: random_direction, smooth_step
-float perlin_noise( vec3 st) 
+
+//https://www.youtube.com/watch?v=MJ3bvCkHJtE
+float perlin_noise(vec3 st)
 {
-  /////////////////////////////////////////////////////////////////////////////
-  // Replace with your code 
-  return 0;
-  /////////////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////////////
+
+
+    vec3 gird = floor(st);
+
+
+    vec3 direction[8];
+    int index = 0;
+
+    for (int i = 0; i < 2; i ++){
+        for (int j = 0; j < 2; j ++){
+            for (int k = 0; k < 2; k ++){
+                direction[index] = vec3(i, j, k);
+                index++;
+
+            }
+        }
+    }
+
+    vec3 gv[8];
+
+    //get the 8 gradiant vector
+
+    for (int i = 0; i < 8; i++){
+        gv[i] = random_direction(gird + direction[i]);
+    }
+
+    vec3 oppo = st - gird;
+
+    vec3 distance[8];
+
+    for (int i = 0; i < 8; i ++){
+        distance[i] = oppo - direction[i];
+    }
+
+
+    float dots[8];
+
+    for (int i = 0; i < 8; i++){
+        dots[i] = dot(distance[i], gv[i]);
+    }
+
+    float reduce1_1 = mix(dots[0], dots[1], oppo.x);
+    float reduce1_2 = mix(dots[2], dots[3], oppo.x);
+    float reduce1_3 = mix(dots[4], dots[5], oppo.x);
+    float reduce1_4 = mix(dots[6], dots[7], oppo.x);
+
+
+    float reduce2_1 = mix(reduce1_1, reduce1_2, oppo.y);
+    float reduce2_2 = mix(reduce1_3, reduce1_4, oppo.y);
+
+
+    float reduce = mix(reduce2_1, reduce2_2, oppo.z);
+
+
+
+    return -1 + 2 * reduce;
+
+    /////////////////////////////////////////////////////////////////////////////
 }
 
